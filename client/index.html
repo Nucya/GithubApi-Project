@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> GitHub </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/stylesheet/styles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+
+
+
+    <script src="https://use.fontawesome.com/370b70ff2d.js"></script>
+    <script src="app.js"></script>
+
+    <script type="text/javascript" src="/assets/controllers/gitHubDataController.js"></script>
+    <script type="text/javascript" src="/assets/controllers/gitHubRepoController.js"></script>
+    <script type="text/javascript" src="/assets/factories/gitHubDataFactory.js"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <!-- NavBar -->
+          <nav class="navbar navbar-inverse">
+            <div class="githublogo">
+              <img src="/assets/images/GitHub_Logo.png" alt="github logo">
+            </div>
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+                <i class="fa fa-github fa-3x fa-fw" aria-hidden="true"></i>
+              </div>
+        <!-- search form -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <div class="col-sm-3 col-md-3">
+              <form class="navbar-form" role="search">
+              <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" name="q">
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                  </div>
+              </div>
+              </form>
+          </div>
+          <!-- navbar buttons -->
+            <ul class="nav navbar-nav">
+              <li><a href="#">Pull Repositories</a></li>
+              <li><a href="#">Issues</a></li>
+              <li><a href="#">Marketplace</a></li>
+              <li><a href="#">Gist</a></li>
+            </ul><!-- end navbar buttons  -->
+
+            <!-- icons -->
+            <div class="addicon">
+              <img src="/assets/images/plus-flat copy.png" alt="Plus Icon">
+              <img src="/assets/images/arrow-flat copy.png" alt="Arrow Icon">
+            </div>
+          </div><!-- end icons -->
+
+          </div><!-- /.navbar-collapse -->
+            </nav>
+
+            <!-- navbar 2 -->
+            <nav class="navbar-inverse">
+
+              <!-- bodytop class -->
+              <div class="bodytop">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+
+
+              <!-- Navbar collapse -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+                <!-- navbar buttons -->
+                  <ul class="nav navbar-nav" id="navbar2">
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Repositories</a></li>
+                    <li><a href="#">Stars</a></li>
+                    <li><a href="#">Followers</a></li>
+                    <li><a href="#">Following</a></li>
+                  </ul><!-- end navbar buttons  -->
+
+                </div><!-- end navbar collapse -->
+
+                <!-- profile header  -->
+                <div class="profile">
+                        <div class="profile-header-container">
+                        	<div class="profile-header-img">
+                            <h4><span style="color: #19bd9c">Follow</span> <span style="font-size: 13px; color:#c1392a">Report/Block<spam></h4>
+                              <img class="img-circle" src="/assets/images/1-IMG_1790.jpg" alt="Selfie">
+                          </div>
+                        </div>
+                	</div><!-- end profile header -->
+                  <!-- end bodytop -->
+              </div>
+              <!-- navbar-collapse -->
+            </nav>
+            <!-- end nav -->
+          </div>
+          <div class="panel  panel-default">
+            <div class="panel-heading">
+                <form class="form-inline">
+                    <span>
+                        <h4><span style="color:grey; margin-left:200px;">Search Repositories </span><span class="badge">{{repoData.length}}</span>
+                        <input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
+                        </h4>
+                    </span>
+                </form>
+            </div>
+          <!-- body center -->
+        <div class="bodymiddle">
+          <div ng-controller="gitHubDataController">
+
+          <!-- leftmenu -->
+          <div class="leftmenu col-md-2">
+
+            <h3 class="userinfo">
+            {{username}}
+            <br>
+            <a href="{{userData.html_url}}">
+                {{userData.bio}}
+                {{userData.repos_url}}
+            </a>
+          </h3>
+            <hr>
+            <!-- BIO -->
+            </div>
+          </div>
+        </div>
+            <!-- rightmenu -->
+            <div ng-controller="gitHubRepoController" class="rightmenu col-md-offset-1 col-md-8">
+              <h5>Recent Repositories</h5>
+
+                  <div class="panel-body">
+                      <div class="list-group">
+                          <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                              <div class="row">
+
+                                  <div class="col-md-8">
+                                      <h4>
+                                          <small>
+                                              <span ng-if="repo.fork" class="octicon octicon-repo-forked"></span>
+                                              <span ng-if="!repo.fork" class="octicon octicon-repo"></span>
+                                          </small>
+                                          <a href="{{repo.html_url}}" target="_blank" >
+                                              {{repo.name}}
+                                          </a>
+                                          <small>{{repo.description}}</small>
+                                      </h4>
+
+                                      <small>
+                                          <a href="{{repo.homepage}}" class="">
+                                              <i class="fa fa-link"></i> WebPage
+                                          </a>
+                                      </small>
+                                  </div>
+
+                                  <div class="col-md-4">
+                                      <dl class="dl-horizontal">
+                                        <dt>Last Updated:</dt>
+                                        <dd>{{repo.updated_at | date : short : timezone}}</dd>
+                                        <dt>Created:</dt>
+                                        <dd>{{repo.created_at| date : short : timezone}}</dd>
+                                      </dl>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+
+
+  </body>
+</html>
