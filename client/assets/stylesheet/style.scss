@@ -7,16 +7,19 @@ $green: #19bd9c;
 *{
   padding: 0;
   margin: 0;
+
 }
 .body {
   background-color: $lightblue;
   border: 1px solid white;
+  height: 950px;
+  width: 950px;
 }
 
 // Navbar
 .container-fluid{
   height: auto;
-  padding-top: 125px;
+  padding-top: 60px;
   padding-bottom: 10px;
   background-color: $darkblue;
   height: auto;
@@ -27,7 +30,7 @@ $green: #19bd9c;
 
 // bottom nav bar
 .bodytop{
-  height: 380px;
+  height: 150px;
   background-color: $lightblue;
   border-top: 1px solid white;
   border-left: 1px solid white;
@@ -73,9 +76,10 @@ $green: #19bd9c;
   width: 200px;
   height: 200px;
   border: 2px solid #c1392a;
-  margin-left: 30px;
-  margin-top: 30px;
-  margin-right: 30px;
+  margin-left: 40px;
+  margin-top: -60px;
+  padding: 5px;
+  background-color: $darkblue;
 }
 
 .profile{
@@ -97,6 +101,11 @@ $green: #19bd9c;
   margin-bottom: 0px;
 }
 
+.profile-header-img{
+  height: auto;
+  width: auto;
+}
+
 .bodymiddle{
   width: auto;
   height: 550px;
@@ -109,7 +118,8 @@ $green: #19bd9c;
 
 .leftmenu{
   float: left;
-  background-color: $darkblue;
+  background-color: $lightblue;
+  padding: 15px;
   height: 550px;
   width:300px;
   margin: 0px;
@@ -124,10 +134,6 @@ $green: #19bd9c;
   color: $wheat;
 }
 
-.leftmenu hr{
-  align: left;
-  width: 75%;
-}
 
 .leftmenu h6{
   color: $wheat;
@@ -135,11 +141,7 @@ $green: #19bd9c;
 }
 
 .rightmenu{
-  position: absolute;
-  left: 124px;
   background-color: $darkblue;
-  height: auto;
-  margin-left: 240px;
   border-top: 1px solid $babyblue;
   border-left: 1px solid $babyblue;
 }
@@ -150,11 +152,15 @@ $green: #19bd9c;
   font-size: 24px;
 }
 
-.rightmenu hr{
-  width: 75%;
-}
 
 .panel-default>.panel-heading{
-  z-index: 3;
   background-color: $darkblue;
+}
+
+.list-group-item{
+  background-color: $darkblue;
+}
+
+.panel{
+  margin: 0px;
 }
